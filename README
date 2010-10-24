@@ -1,1 +1,56 @@
-Full explanation at: http://blog.mariovieira.net/
+- http://blog.mariovieira.net/
+
+It serializes and de-serializes complex object types, top level objects including iterative types (except Vectors for now), and it takes multidimensional arrays offering “CRUD” operations.
+
+Setup
+- add the following to your compiler settings
+
+-keep-as3-metadata+=Serialize
+
+- add the project swc or classes to your Flash or Flex project
+- drop the ridiculously simple updater.php found in the GitHub link in an a folder in your Apache server (for the CRUD)
+
+Create your value object and let the Serializer know which properties you want serialized
+
+public class PlaylistVoCollection
+{
+public function PlaylistVoCollection(){}
+
+[Serialize] public var title:String;
+
+[Serialize] public var isPublic:Boolean;
+
+[Serialize] public var items:ArrayCollection = new ArrayCollection();
+
+public var adBanner:ByteArray; //this will not be serialized
+}
+
+Serialize and de-serialize
+
+Serializer.serializeValuObjectIntoXML(object); //returns the XML
+//
+Serializer.deserializeXMLIntoValuObject( theSerializeXML );//returns the typed object
+
+CRUD operations
+
+- Create and instance of the SerializerCRUD and you’re good to go (by passing your Apache service url to the constructor)
+
+ var serializer:SerializerCRUD = new SerializerCRUD('http://localhost:8888/serializer/');  
+
+- Create/Update your value object (by passing the instance of your VO and an unique id)
+
+serializer.update(myPlaylist, 1); 
+
+- Destroy it (passing the class of the object and unique id)
+
+ serializer.destroy(PlaylistVoCollection, 1); 
+
+- Retrieve (same as destroy)
+
+serializer.addEventListener(PersisterEvent.ON_RETRIEVED, onRetrieved);
+serializer.retrieve( PlaylistVoCollection, 1 );
+
+private function onRetrieved(e:PersisterEvent):void
+{
+    var serializedPlaylistCollection:PlaylistVoCollection = e.retrievedItem;
+}
