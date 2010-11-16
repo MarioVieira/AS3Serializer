@@ -37,7 +37,7 @@ package net.mariovieira.serializer.persister.utils
 			
 			var saveFile:FileUpdater = new FileUpdater(updaterPhpUrl);
 			saveFile.updateFile(configXMLFileName, 
-								Serializer.serializeValuObjectIntoXML(info).toXMLString() );
+								Serializer.serializeValueObjectIntoXML(info).toXMLString() );
 		}
 	}
 }

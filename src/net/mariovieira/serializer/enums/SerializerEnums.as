@@ -23,6 +23,6 @@ package net.mariovieira.serializer.enums
 		//to cast bolleans check
 		public static const FALSE:String			 		= 'false';
 		
-		public static const XML_VERSION:String		=  '<?xml version="1.0"?>\n';
+		public static const XML_VERSION:String				=  '<?xml version="1.0"?>\n'; 
 	}
 }

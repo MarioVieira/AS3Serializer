@@ -8,10 +8,20 @@ package net.mariovieira.serializer.helpers
 	/**
 	 * 
 	 * @author Mario Vieira
+	 * This class describes the object for the Serializer functionality
+	 * It uses flash.utils.describeType, flash.utils.getDefinitionByName and flash.utils.getQualifiedClassName
 	 * 
 	 */	
 	public final class ObjectDescriptor
 	{
+		protected static const OBJECT_DESCRIPTOR_TAGS:Array = ['variable', 'accessor'];
+		
+		/**
+		 *
+		 * @private 
+		 * 
+		 * 
+		 */		
 		public function ObjectDescriptor(){}
 		
 		/**
@@ -23,11 +33,22 @@ package net.mariovieira.serializer.helpers
 		 */
 		public static function getSerializerElements(object:Object):XML
 		{
-			var elements:XML = new XML(<elements/>);
-			elements.appendChild( getSerializerNodes(SerializerEnums.VARIABLE, object) );
-			elements.appendChild( getSerializerNodes(SerializerEnums.ACCESSOR, object) );
-			return elements;
+			var elements:XML  					= new XML(<elements/>);
+			var objectXML:XML 					= describeType(object);
+			var accessorAndVariables:XMLList;
+			
+			for(var i:int; i < OBJECT_DESCRIPTOR_TAGS.length; i++)
+			{
+				if( objectXML.hasOwnProperty(OBJECT_DESCRIPTOR_TAGS[i]) )
+				{
+					if(!accessorAndVariables) accessorAndVariables = objectXML[OBJECT_DESCRIPTOR_TAGS[i]];
+					else accessorAndVariables.appendChild( objectXML[OBJECT_DESCRIPTOR_TAGS[i]] );
+				}
+			}
+			
+			return elements.appendChild( getSerializerNodes(accessorAndVariables) );
 		}
+		
 		
 		/**
 		 * 
@@ -36,9 +57,34 @@ package net.mariovieira.serializer.helpers
 		 * @return 
 		 * 
 		 */		
-		protected static function getSerializerNodes(nodeName:String, object:Object):XMLList
-		{
-			return describeType(object)[nodeName].( /Serialize.*/.test( metadata.@name ) );
+		public static function getSerializerNodes(list:XMLList):XMLList
+		{	
+			var serializerElement:XML = new XML(<element/>);
+			
+			for(var i:int; i < list.length(); i++)
+			{
+				if(list[i].metadata.(@name == SerializerEnums.S_ERIALIZE) && String(list[i].metadata.(@name == SerializerEnums.S_ERIALIZE).parent()) != 'undefined') 
+					serializerElement.appendChild( list[i].metadata.(@name == SerializerEnums.S_ERIALIZE).parent() );
+			}
+			
+			return serializerElement.children();
+			
+			/*
+			The following WORKED perfectly fine until it's compiled for released :o Oddly enough it only works in debug mode, any RegExp experts there?
+			
+			var reg:RegExp = new RegExp(SerializerEnums.S_ERIALIZE);
+			return xml['variable'].(reg.test( metadata.@name )); //'accessor'
+			
+			See the following xml. Given that we need to check a child and retrieve the parent of it, it's not possible to use:
+			list..metadata.(@name = SerializerEnums.S_ERIALIZE).parent() (since there is no parent for the XMLList "..", nor a reference the childIndex() since it can have more than 1 item)
+			<variable name="title" type="String">
+				<metadata name="Serialize"/>
+			</metadata>
+			<variable name="isPublic" type="Boolean">
+				<metadata name="Serialize"/>
+			</metadata>
+			*/
+			
 		}
 		
 		

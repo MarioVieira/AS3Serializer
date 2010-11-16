@@ -7,8 +7,8 @@ package net.mariovieira.serializer.helpers
 	 * 
 	 * @author Mario Vieira
 	 * 
-	 * This provides checks for iterative type based on the qualified class names as strings
-	 * The main porpuse of this class is to avoid tied coupling the Serializer to Flex
+	 * This provides checks for iterative type based on the qualified class names
+	 * The main purpose of this class is to avoid tied coupling the Serializer to Flex collections, otherwise a simple 'is' check would do
 	 * 
 	 */	
 	
@@ -29,8 +29,12 @@ package net.mariovieira.serializer.helpers
 		protected static const XML:String					= 'XML';
 		protected static const XMLLIST:String				= 'XMLList';
 		
-		public static const ITERATIVE_TYPES:Array			= [ARRAY, ARRAY_COLLECTION, ARRAY_LIST];
-		
+		/**
+		 *
+		 * @private 
+		 * 
+		 * 
+		 */		
 		public function GetIterativeTypes(){}
 		
 		/**
@@ -58,7 +62,7 @@ package net.mariovieira.serializer.helpers
 		
 		/**
 		 * This method is used when factoring objects. Casting String into top level objects is fine as long as the are not iterative items (eg: Array)
-		 * If they are iterative, the Serializer functionality will also data type their indexed objects
+		 * If they are iterative, the Serializer functionality will also factory their indexed objects
 		 * 
 		 * @param type The object type
 		 * @return 
@@ -66,6 +70,7 @@ package net.mariovieira.serializer.helpers
 		 */		
 		public static function isTopLevelObjectTypeIgnoringIterativeItems(type:String):Boolean
 		{	
+			//faster than looping in an Array
 			return (type == STRING || type == BOOLEAN || type == NUMBER || type == INT || 
 					type == UINT || type == XML || type == XMLLIST || type == OBJECT);
 		}

@@ -8,11 +8,17 @@ package net.mariovieira.serializer.factories
 	 * 
 	 * @author Mario Vieira
 	 * 
-	 * This class factories objects
+	 * This class factories properties, and although it's called Factory it did not need a Facade
 	 * 
 	 */	
 	public class PropertyFactory
 	{
+		/**
+		 *
+		 * @private 
+		 * 
+		 * 
+		 */		
 		public function PropertyFactory(){}
 		
 		/**

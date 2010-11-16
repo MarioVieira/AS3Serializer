@@ -16,7 +16,7 @@ package net.mariovieira.serializer.example
 		
 		public function serializeVoToXML():void
 		{
-			xmlFromValueObject 		= Serializer.serializeValuObjectIntoXML( _valueObjectOrigin );
+			xmlFromValueObject 		= Serializer.serializeValueObjectIntoXML( _valueObjectOrigin );
 		}
 	
 		public function deserializeXMLIntoObject():void

@@ -2,12 +2,22 @@ package net.mariovieira.serializer.helpers
 {
 	import net.mariovieira.serializer.enums.SerializerEnums;
 	
+	/**
+	 *@private 
+	 * 
+	 */
 	public class SerializerNamespaces
 	{
 		public static const SERIALIZER:String				= 'serializer';
 		public static const SERIALIZER_NAMESPACE:String		= 'http://www.mariovieira.net/serializer';
 		public static const INVALID_NAME_SPACE:String		= 'Invalid namespace in XML Serializer';
 		
+		/**
+		 *
+		 * @private 
+		 * 
+		 * 
+		 */			
 		public function SerializerNamespaces(){}
 		
 		public static function checkNamespace(xml:XML):void

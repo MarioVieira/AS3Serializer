@@ -3,6 +3,8 @@ package net.mariovieira.serializer.factories
 	import net.mariovieira.serializer.enums.SerializerEnums;
 	import net.mariovieira.serializer.helpers.GetIterativeTypes;
 	import net.mariovieira.serializer.helpers.SerializerNamespaces;
+	import net.mariovieira.serializer.interfaces.ICRUD;
+	import net.mariovieira.serializer.persister.control.SerializerCRUD;
 
 	/**
 	 * 
@@ -11,11 +13,17 @@ package net.mariovieira.serializer.factories
 	 */	
 	public final class ValueObjectFactory
 	{
+		/**
+		 *
+		 * @private 
+		 * 
+		 * 
+		 */				
 		public function ValueObjectFactory(){}
 		
 		/**
 		 *
-		 * Returns an object of the Serializer <code>xml</code> 
+		 * Returns a typed object of the Serializer <code>xml</code> 
 		 * @param xml Serialized object xml
 		 * @return Typed object with assigned properties
 		 * 
@@ -27,6 +35,11 @@ package net.mariovieira.serializer.factories
 			return 	objectClass = getSerializedObjectFromXML(xml[0].children()[0].children(), objectClass);
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */		
 		protected static function getSerializedObjectFromXML(xmlChildren:XMLList, objectClass:*):*
 		{
 			for(var i:int = 0; i < xmlChildren.length(); i++)
@@ -40,6 +53,11 @@ package net.mariovieira.serializer.factories
 			return objectClass;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		protected static function populateIterativeObject(xmlChildren:XMLList, iterativeObject:*):*
 		{
 			for(var i:int; i < xmlChildren.length(); i++)

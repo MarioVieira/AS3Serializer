@@ -8,15 +8,13 @@ package net.mariovieira.serializer.utils
 	import net.mariovieira.serializer.persister.enums.PersisterEnums;
 	
 	/**
-	 * Serializes DTOs into XML of Serializer namespace
+	 * Serializes Value Objects into XML of Serializer namespace
 	 * 
 	 * @author Mario Vieira
 	 * 
 	 */	
 	public final class SerializeDataTransferObjectToXML
 	{
-		public function SerializeDataTransferObjectToXML(){}
-		
 		/**
 		 * Returns a Serializer xml of the provided object
 		 *  
@@ -30,6 +28,11 @@ package net.mariovieira.serializer.utils
 			return new XML(SerializerEnums.XML_VERSION + < {SerializerEnums.SERIALIZER} >{ getObjectXML(object, element) }</ {SerializerEnums.SERIALIZER} >).addNamespace( SerializerNamespaces.getSerializerNamespace() );
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */		
 		protected static function getObjectXML(object:Object, element:XML):XML
 		{
 			var serializerElements:XMLList = ObjectDescriptor.getSerializerElements( object ).children();
@@ -38,7 +41,7 @@ package net.mariovieira.serializer.utils
 			{
 				var propName:String  = serializerElements[i].@name;
 				var propType:String  = ObjectDescriptor.classPackageAndNameOutOfQualifiedClassName(serializerElements[i].@type);
-				var propValue:String = ( !GetIterativeTypes.isIterativeType(propType) ) ? PropertyValueToString.getPropertyValueToString(object[propName]) : null;
+				var propValue:String = ( !GetIterativeTypes.isIterativeType(propType) ) ? PropertyValueToString.toString(object[propName]) : null;
 				var node:XML 		 = getNode(propName, propValue, propType);
 				
 				element.appendChild( node );
@@ -48,11 +51,11 @@ package net.mariovieira.serializer.utils
 			return element;
 		}
 		
-		protected static function getNode(name:String, value:String, type:String):XML
-		{
-			return new XML( <{name} type={type}> {(value = (!value) ? "" : value)} </{name}> );
-		}
-		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */	
 		protected static function getCollectionNode(iterativeObject:*, existingNode:XML):XML
 		{
 			
@@ -63,6 +66,17 @@ package net.mariovieira.serializer.utils
 			}
 			
 			return existingNode;
+		}
+		
+		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */	
+		protected static function getNode(name:String, value:String, type:String):XML
+		{
+			return new XML( <{name} type={type}> {(value = (!value) ? "" : value)} </{name}> );
 		}
 	}
 }

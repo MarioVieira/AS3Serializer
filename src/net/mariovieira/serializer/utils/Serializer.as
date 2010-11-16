@@ -30,10 +30,29 @@ package net.mariovieira.serializer.utils
 	 * @author Mario Vieira
 	 * 
 	 * Static class to serialize objects into XML and Serializer XML into Objects
-	 * When it comes for serialization, an using static members helped to avoid instances
+	 * 
+	 * @example
+	 * The following serializes objects to XML and deserializes XML to objects:
+     *
+	 *	<listing version="3.0">
+	 *  var object:PlaylistVoCollection = ValueObjectCollectionExample.valueObjectCollection; 
+	 *  
+	 *  //Returns the XML
+	 *  var objectSerializedToXML:XML = Serializer.serializeValuObjectIntoXML(object);
+	 * 
+	 *  //Returns the typed object
+	 *  var serializedObject:PlaylistVoCollection = Serializer.deserializeXMLIntoValuObject( objectSerializedToXML );
+	 *  </listing> 
+ 	 * 
 	 */	
 	public class Serializer
 	{
+		/**
+		 *
+		 * @private 
+		 * 
+		 * 
+		 */	
 		public function Serializer(){}
 		
 		/**
@@ -42,7 +61,7 @@ package net.mariovieira.serializer.utils
 		 * @return The xml Serializer out of the <code>object</code>
 		 * 
 		 */		
-		public static function serializeValuObjectIntoXML(object:*):XML
+		public static function serializeValueObjectIntoXML(object:*):XML
 		{
 			return SerializeDataTransferObjectToXML.getSerializerXMLFromObject(object);
 		}

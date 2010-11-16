@@ -5,10 +5,17 @@ package net.mariovieira.serializer.helpers
 	/**
 	 *  
 	 * @author Mario Vieira
+	 * This class checks whether the object is of XML type to retun toString() or toXMLString()
 	 * 
 	 */	
 	public class PropertyValueToString
 	{
+		/**
+		 *
+		 * @private 
+		 * 
+		 * 
+		 */		
 		public function PropertyValueToString(){}
 		
 		/**
@@ -19,7 +26,7 @@ package net.mariovieira.serializer.helpers
 		 * @return 
 		 * 
 		 */		
-		public static function getPropertyValueToString(value:*):String
+		public static function toString(value:*):String
 		{
 			return (value is XML || value is XMLList || value is XMLListCollection) ? value.toXMLString() : value.toString();
 		}
