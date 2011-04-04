@@ -54,17 +54,6 @@ package org.as3.serializer.utils
 				
 				if(!object[propName] || !isIterativeType) element.appendChild( node );
 				else element.appendChild( getCollectionNode(object[propName], node) );
-				
-				//find base value if possible
-				/*
-				
-				var propValue:String = (isTopLevelIgnoringIterativeItems) ? ValueToString.toString(object[propName]) : null;
-				var node:XML = (!isTopLevelIgnoringIterativeItems && object[propName]) ? getNode(propName, propValue, propType) : getObjectXML(object[propName], node);
-				
-				if(!object[propName] || !isIterativeType) element.appendChild( node );
-				else element.appendChild( getCollectionNode(object[propName], node) );
-				
-				*/
 			}
 			
 			return element;

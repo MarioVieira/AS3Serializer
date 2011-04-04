@@ -66,15 +66,17 @@ package org.as3.serializer.utils
 			return SerializeDataTransferObjectToXML.getSerializerXMLFromObject(object);
 		}
 		
-		/**
+		/** 
 		 * 
 		 * @param xml The xml Serializer to be serialized into an Object
-		 * @return An typed object out of the <code>xml</code> parameter
+		 * @param findClassPackage Option to find a given class package that has changed
+		 * @param replaceClassPackage Option to replace a provided class package that changed
+		 * @return 
 		 * 
 		 */		
-		public static function deserializeXMLIntoValuObject(xml:XML):*
+		public static function deserializeXMLIntoValueObject(xml:XML, findClassPackage:String = null, replaceClassPackage:String = null):*
 		{
-			return ValueObjectFactory.deserializeXMLIntoObject(xml);
+			return ValueObjectFactory.deserializeXMLIntoObject(xml, findClassPackage, replaceClassPackage);
 		}
 	}
 }
