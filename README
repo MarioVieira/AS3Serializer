@@ -1,56 +1,41 @@
-- http://blog.mariovieira.net/
+## What is it?
+It's a Serialization API for Action Script 3 intended to describe complex data type into XML, and back to typed object.
 
-It serializes and de-serializes complex object types, top level objects including iterative types (except Vectors for now), and it takes multidimensional arrays offering “CRUD” operations.
+## Which objects does it take?
+Anything you can describe, including Vectors, Array, ArrayCollections, XMLList, XML
 
-Setup
-- add the following to your compiler settings
+## How does it work?
+`var xml:XML = Serializer.serialize( myDataTransferObject );
+var myObject:MyDataTransferObject = Serializer.deserialize( xml );`
 
--keep-as3-metadata+=Serialize
+## How do I configure my classes?
+`[Serialize] public var id:int;`
+`[Serialize] public function getMeSomeString():String{ return "someString" };`
+`[Serialize] public function get someString():String{ return "someString" };`
+`[Serialize] public var playlists:Vector.<PlaylistInfo>;`
 
-- add the project swc or classes to your Flash or Flex project
-- drop the ridiculously simple updater.php found in the GitHub link in an a folder in your Apache server (for the CRUD)
+`//public class PlaylistInfo`
+`[Serialize] public var artist:String;`
+`[Serialize] public var songTitle:String;`
 
-Create your value object and let the Serializer know which properties you want serialized
+## Not all. You can Create, Read, Update, and Delete them to and from XML
+Almost. You can use it as a "toString()" of your objects, and Create, Read, Update, and Delete them to and from XML with the ICrud:
+ 
+## CRUD operations
+#Create
+`var serializer:SerializerCRUD = new SerializerCRUD('http://localhost:8888/serializer/');  `
+`serializer.update(myPlaylist, 1); `
 
-public class PlaylistVoCollection
-{
-public function PlaylistVoCollection(){}
+#Destroy
+` serializer.destroy(PlaylistVoCollection, 1); `
 
-[Serialize] public var title:String;
+#Retrieve
+`serializer.addEventListener(PersisterEvent.ON_RETRIEVED, onRetrieved);`
+`serializer.retrieve( PlaylistVoCollection, 1 );`
 
-[Serialize] public var isPublic:Boolean;
+`private function onRetrieved(e:PersisterEvent):void`
+`{`
+    `var serializedPlaylistCollection:PlaylistVoCollection = e.retrievedItem;`
+`}`
 
-[Serialize] public var items:ArrayCollection = new ArrayCollection();
 
-public var adBanner:ByteArray; //this will not be serialized
-}
-
-Serialize and de-serialize
-
-Serializer.serializeValuObjectIntoXML(object); //returns the XML
-//
-Serializer.deserializeXMLIntoValuObject( theSerializeXML );//returns the typed object
-
-CRUD operations
-
-- Create and instance of the SerializerCRUD and you’re good to go (by passing your Apache service url to the constructor)
-
- var serializer:SerializerCRUD = new SerializerCRUD('http://localhost:8888/serializer/');  
-
-- Create/Update your value object (by passing the instance of your VO and an unique id)
-
-serializer.update(myPlaylist, 1); 
-
-- Destroy it (passing the class of the object and unique id)
-
- serializer.destroy(PlaylistVoCollection, 1); 
-
-- Retrieve (same as destroy)
-
-serializer.addEventListener(PersisterEvent.ON_RETRIEVED, onRetrieved);
-serializer.retrieve( PlaylistVoCollection, 1 );
-
-private function onRetrieved(e:PersisterEvent):void
-{
-    var serializedPlaylistCollection:PlaylistVoCollection = e.retrievedItem;
-}
