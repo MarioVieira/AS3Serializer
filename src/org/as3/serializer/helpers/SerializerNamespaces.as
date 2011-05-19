@@ -26,7 +26,7 @@ package org.as3.serializer.helpers
 		}
 		
 		public static function getSerializerNamespace():Namespace
-		{
+		{   
 			return new Namespace(SERIALIZER, SERIALIZER_NAMESPACE);
 		}
 	}

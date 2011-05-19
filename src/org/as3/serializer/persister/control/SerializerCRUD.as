@@ -45,7 +45,7 @@ package org.as3.serializer.persister.control
 	 *	  var serializedPlayList:PlaylistVoCollection = e.retrievedItem;
 	 * }
 	 * 
-	 * </listing> 
+	 * </listing>   
 	 * 
 	 */	
 	public class SerializerCRUD extends EventDispatcher implements ICRUD
@@ -158,7 +158,7 @@ package org.as3.serializer.persister.control
 		protected function onRetrieve(event:Event):void
 		{
 			event.target.removeEventListener(Event.COMPLETE, onRetrieve);
-			dispatchEvent( new PersisterEvent(PersisterEvent.ON_RETRIEVED, Serializer.deserializeXMLIntoValuObject( XML(event.target.data)) ));
+			dispatchEvent( new PersisterEvent(PersisterEvent.ON_RETRIEVED, Serializer.deserializeXMLIntoValueObject( XML(event.target.data)) ));
 		}
 		/**
 		 *  
@@ -171,10 +171,10 @@ package org.as3.serializer.persister.control
 		}
 		
 		/**
-		 *  
+		 *    
 		 * @private
 		 * Makes sure the Apache url provided is a directory
-		 */	
+		 */	  
 		protected function hasForwadSlash(value:String):String
 		{
 			if( value.substring(value.length - 1) != '/' ) value += '/';
