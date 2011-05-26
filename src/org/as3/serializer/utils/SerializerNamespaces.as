@@ -1,4 +1,4 @@
-package org.as3.serializer.helpers
+package org.as3.serializer.utils
 {
 	import org.as3.serializer.enums.SerializerEnums;
 	

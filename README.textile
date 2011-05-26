@@ -10,6 +10,11 @@ h1. How does it work?
 var xml:XML = Serializer.serialize( myDataTransferObject );
 var myObject:MyDataTransferObject = Serializer.deserialize( xml );
 
+h1. What are the rules?
+
+One. Don't use parameters in the constructor.
+It's meant for Data Transfer Objects / Value Objects
+
 h1. Which objects does it take?
 
 Data Transfers Objects. Anything that be converted into text including Vectors, Array, XML, etc
@@ -22,5 +27,4 @@ h1. How do I configure my classes?
 
 You don't have to do anything. You only need to describe members you don't want to include
 
-eg: 
-[Transient] public var isLocalData:Boolean
+[Transient] public var notGoingToBeSerialized:String;

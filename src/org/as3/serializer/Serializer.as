@@ -22,9 +22,9 @@
 	
 	*/
 
-package org.as3.serializer.utils
+package org.as3.serializer
 {
-	import org.as3.serializer.factories.ValueObjectFactory;
+
 	/**
 	 * 
 	 * @author Mario Vieira
@@ -61,9 +61,9 @@ package org.as3.serializer.utils
 		 * @return The xml Serializer out of the <code>object</code>
 		 * 
 		 */		
-		public static function serializeValueObjectIntoXML(object:*):XML
+		public static function serialize(object:Object):XML
 		{
-			return SerializeDataTransferObjectToXML.getSerializerXMLFromObject(object);
+			return ValueObjectToXML.getSerializerXMLFromObject(object);
 		}
 		
 		/** 
@@ -74,9 +74,9 @@ package org.as3.serializer.utils
 		 * @return 
 		 * 
 		 */		
-		public static function deserializeXMLIntoValueObject(xml:XML, findClassPackage:String = null, replaceClassPackage:String = null):*
+		public static function deserialize(xml:XML, findClassPackage:String = null, replaceClassPackage:String = null):*
 		{
-			return ValueObjectFactory.deserializeXMLIntoObject(xml, findClassPackage, replaceClassPackage);
+			return XMLToValueObject.deserializeXMLIntoObject(xml, findClassPackage, replaceClassPackage);
 		}
 	}
 }

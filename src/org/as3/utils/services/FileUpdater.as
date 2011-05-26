@@ -65,7 +65,6 @@ package org.as3.utils.services
 			req.data 				= vars;
 			req.method 				= URLRequestMethod.POST;
 			
-			  
 			load(req);
 		}
 	}

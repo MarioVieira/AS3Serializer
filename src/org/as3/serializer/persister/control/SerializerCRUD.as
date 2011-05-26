@@ -9,11 +9,11 @@ package org.as3.serializer.persister.control
 	import flash.utils.setTimeout;
 	
 	import org.as3.serializer.example.PlaylistVoCollection;
-	import org.as3.serializer.helpers.ObjectDescriptor;
+	import org.as3.serializer.utils.ObjectDescriptor;
 	import org.as3.serializer.interfaces.ICRUD;
 	import org.as3.serializer.persister.enums.PersisterEnums;
 	import org.as3.serializer.persister.events.PersisterEvent;
-	import org.as3.serializer.utils.Serializer;
+	import org.as3.serializer.Serializer;
 	import org.as3.utils.services.FileUpdater;
 	
 	/**
@@ -26,7 +26,7 @@ package org.as3.serializer.persister.control
 	 * @author Mario Vieira
 	 * 
 	 * Provides CRUD operations for the value object serializer
-	 * @example
+	 * @example 
 	 * <listing version="3.0"> 
 	 * 
 	 * var object:PlaylistVoCollection = ValueObjectCollectionExample.valueObjectCollection;
@@ -114,7 +114,7 @@ package org.as3.serializer.persister.control
 		 */		
 		public function update(object:Object, uniqueId:uint):void
 		{
-			_updater.updateFile( getItemFileName(object, uniqueId), Serializer.serializeValueObjectIntoXML(object).toXMLString() );
+			_updater.updateFile( getItemFileName(object, uniqueId), Serializer.serialize(object).toXMLString() );
 		}
 		
 		/**
@@ -158,7 +158,7 @@ package org.as3.serializer.persister.control
 		protected function onRetrieve(event:Event):void
 		{
 			event.target.removeEventListener(Event.COMPLETE, onRetrieve);
-			dispatchEvent( new PersisterEvent(PersisterEvent.ON_RETRIEVED, Serializer.deserializeXMLIntoValueObject( XML(event.target.data)) ));
+			dispatchEvent( new PersisterEvent(PersisterEvent.ON_RETRIEVED, Serializer.deserialize( XML(event.target.data)) ));
 		}
 		/**
 		 *  

@@ -1,4 +1,4 @@
-package org.as3.serializer.helpers
+package org.as3.serializer.utils
 {
 	/**
 	 *  

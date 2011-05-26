@@ -1,12 +1,12 @@
-package org.as3.serializer.utils
+package org.as3.serializer
 {
 	import flash.events.EventDispatcher;
 	
 	import org.as3.serializer.enums.SerializerEnums;
-	import org.as3.serializer.helpers.GetObjectType;
-	import org.as3.serializer.helpers.ObjectDescriptor;
-	import org.as3.serializer.helpers.SerializerNamespaces;
-	import org.as3.serializer.helpers.ValueToString;
+	import org.as3.serializer.utils.GetObjectType;
+	import org.as3.serializer.utils.ObjectDescriptor;
+	import org.as3.serializer.utils.SerializerNamespaces;
+	import org.as3.serializer.utils.ValueToString;
 	import org.as3.serializer.persister.enums.PersisterEnums;
 	
 	/**
@@ -15,7 +15,7 @@ package org.as3.serializer.utils
 	 * @author Mario Vieira
 	 * 
 	 */	
-	public final class SerializeDataTransferObjectToXML extends EventDispatcher	
+	public final class ValueObjectToXML extends EventDispatcher	
 	{
 		/**
 		 * Returns a Serializer xml of the provided object

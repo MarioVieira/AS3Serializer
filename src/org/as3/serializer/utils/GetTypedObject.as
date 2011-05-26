@@ -1,18 +1,17 @@
-package org.as3.serializer.factories
+package org.as3.serializer.utils
 {	
 	import flash.utils.getDefinitionByName;
 	
 	import org.as3.serializer.enums.SerializerEnums;
-	import org.as3.serializer.helpers.GetObjectType;
 
 	/**
 	 * 
 	 * @author Mario Vieira
 	 * 
-	 * This class factories properties, and although it's called Factory it did not need a Facade
+	 * This class factories properties
 	 * 
 	 */	
-	public class ObjectFactory
+	public class GetTypedObject
 	{
 		/**
 		 *
@@ -20,7 +19,7 @@ package org.as3.serializer.factories
 		 * 
 		 * 
 		 */		
-		public function ObjectFactory(){}
+		public function GetTypedObject(){}
 		
 		/**
 		 * 
