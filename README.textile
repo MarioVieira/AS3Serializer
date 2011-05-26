@@ -19,6 +19,7 @@ h1. Which class members it can serialize / deserialize
 public getters with setters and public variables
 
 h1. How do I configure my classes?
+
 You don't have to do anything. You only need to describe members you don't want to include
 
 eg: 
