@@ -5,10 +5,10 @@ package org.as3.serializer.utils
 
 	/**
 	 * 
-	 * @author Mario Vieira
-	 * 
 	 * This provides checks for iterative type based on the qualified class names
 	 * The main purpose of this class is to avoid tied coupling the Serializer to Flex collections, otherwise a simple 'is' check would do
+	 * 
+	 * @author Mario Vieira
 	 * 
 	 */	
 	

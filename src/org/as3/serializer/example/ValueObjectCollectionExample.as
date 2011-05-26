@@ -2,9 +2,9 @@ package org.as3.serializer.example
 {
 	/**
 	 * 
-	 * @author Mario Vieira
-	 * 
 	 * ValueObjectCollectionExample for testing purpose
+	 * 
+	 * @author Mario Vieira
 	 * 
 	 */	
 	public class ValueObjectCollectionExample

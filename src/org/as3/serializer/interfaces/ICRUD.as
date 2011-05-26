@@ -1,7 +1,14 @@
 package org.as3.serializer.interfaces
 {
 	import flash.events.IEventDispatcher;
-
+	/**
+	 * 
+	 * Contract to the SerializerCRUD
+	 * @see org.as3.serializer.persister.control
+	 * 
+	 * @author Mario Vieira
+	 * 
+	 */
 	public interface ICRUD extends IEventDispatcher
 	{
 		function update(object:Object, uniqueId:uint):void;

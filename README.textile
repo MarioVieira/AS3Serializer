@@ -3,7 +3,6 @@ Serializes AS3 objects into XML and back to value objects
 h1. Why would I use it?
 
 Strong typed objects instead of XML files (configuration, settings, markup, etc)
-Serialise value object into XML and when you need it Desereliaze it back to a value object
 
 h1. How does it work?
 
@@ -12,8 +11,7 @@ var myObject:MyDataTransferObject = Serializer.deserialize( xml );
 
 h1. What are the rules?
 
-One. Don't use parameters in the constructor.
-It's meant for Data Transfer Objects / Value Objects
+Don't use parameters in the constructors
 
 h1. Which objects does it take?
 
@@ -25,6 +23,17 @@ public getters with setters and public variables
 
 h1. How do I configure my classes?
 
-You don't have to do anything. You only need to describe members you don't want to include
+You don't have to do anything. It will serialise all public variables and accessors
 
-[Transient] public var notGoingToBeSerialized:String;
+h1. Is that all?
+Actually no. You have CRUD operations too
+
+//for more easily retrieving the serialized XML into value object: 
+var crud:ICrud = new SerializeCRUD( xmlFolderURL );
+crud.addEventListener(PersisterEvent.ON_RETRIEVED);
+
+crud.retrieve( ObjectClass, uniqueId )
+function onRetrieved(e:PersisterEvent):void
+{	
+  var serializedPlayList:ObjectClass = e.retrievedItem;
+}

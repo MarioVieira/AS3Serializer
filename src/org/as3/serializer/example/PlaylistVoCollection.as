@@ -4,10 +4,11 @@ package org.as3.serializer.example
 	import mx.collections.ArrayCollection;
 
 	/**
-	 * 
-	 * @author Mario Vieira
+	 *
 	 * 
 	 * Example value object collection
+	 * 
+	 * @author Mario Vieira
 	 * 
 	 */	
 	public class PlaylistVoCollection

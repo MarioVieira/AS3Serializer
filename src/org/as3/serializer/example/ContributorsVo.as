@@ -2,9 +2,9 @@ package org.as3.serializer.example
 {
 	/**
 	 * 
-	 * @author Mario Vieira
-	 * 
 	 * Example value object
+	 * 
+	 * @author Mario Vieira
 	 * 
 	 */	
 	public class ContributorsVo

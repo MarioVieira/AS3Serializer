@@ -2,8 +2,10 @@ package org.as3.serializer.enums
 {
 	/**
 	 * 
-	 * @author Mario Vieira
 	 * Enumarations used over the serialization
+	 * 
+	 * @author Mario Vieira
+	 * 
 	 */	
 	public class SerializerEnums
 	{

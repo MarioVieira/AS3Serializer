@@ -62,7 +62,7 @@ package org.as3.serializer
 			return objectClass;
 		}
 		
-		
+ 
 		
 		/**
 		 * 
