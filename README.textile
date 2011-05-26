@@ -26,6 +26,7 @@ h1. How do I configure my classes?
 You don't have to do anything. It will serialise all public variables and accessors
 
 h1. Is that all?
+
 Actually no. You have CRUD operations too
 
 //for more easily retrieving the serialized XML into value object: 
