@@ -4,7 +4,7 @@ package org.as3.serializer.interfaces
 	/**
 	 * 
 	 * Contract to the SerializerCRUD
-	 * @see org.as3.serializer.persister.control
+	 * @see org.as3.serializer.persister.control.SerializerCRUD
 	 * 
 	 * @author Mario Vieira
 	 * 

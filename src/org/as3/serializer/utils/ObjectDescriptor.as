@@ -10,9 +10,13 @@ package org.as3.serializer.utils
 
 	/**
 	 * 
+	 * Describes the object for the Serializer
+	 *  
+	 * @see flash.utils.describeType
+	 * @see flash.utils.getDefinitionByName 
+	 * @see flash.utils.getQualifiedClassName
+	 * 
 	 * @author Mario Vieira
-	 * This class describes the object for the Serializer functionality
-	 * It uses flash.utils.describeType, flash.utils.getDefinitionByName and flash.utils.getQualifiedClassName
 	 * 
 	 */	
 	public final class ObjectDescriptor

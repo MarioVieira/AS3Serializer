@@ -10,7 +10,7 @@ package org.as3.serializer
 	import org.as3.serializer.persister.enums.PersisterEnums;
 	
 	/**
-	 * Serializes Value Objects into XML of Serializer namespace
+	 * Serializes value objects into XML (Serializer XML namespace)
 	 * 
 	 * @author Mario Vieira
 	 * 

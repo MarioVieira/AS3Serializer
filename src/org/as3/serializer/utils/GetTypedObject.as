@@ -6,9 +6,9 @@ package org.as3.serializer.utils
 
 	/**
 	 * 
-	 * @author Mario Vieira
-	 * 
 	 * This class factories properties
+	 * 
+	 * @author Mario Vieira
 	 * 
 	 */	
 	public class GetTypedObject

@@ -5,7 +5,9 @@ package org.as3.utils.services
 	import flash.net.URLLoader;
 	
 	/**
-	 * 
+	 *
+	 * File uploader for web CRUD operations
+	 *  
 	 * @author Mario Vieira
 	 * 
 	 */	

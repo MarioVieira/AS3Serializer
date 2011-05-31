@@ -9,8 +9,10 @@ package org.as3.serializer
 
 	/**
 	 * 
+	 * Deserialize serializer XML to value objects
+	 * 
 	 * @author Mario
-	 * It factors objects of the type described by the xml serializer type 
+	 *  
 	 */	
 	public final class XMLToValueObject
 	{
@@ -35,6 +37,7 @@ package org.as3.serializer
 			var objectClass:*	= GetTypedObject.getDataTypedObject( getType(xml[0].children()[0].@type, findClassPackage, replaceClassPackage) );
 			return 	objectClass = getSerializedObjectFromXML(xml[0].children()[0].children(), objectClass, findClassPackage, replaceClassPackage);
 		}
+		
 		
 		/**
 		 * 

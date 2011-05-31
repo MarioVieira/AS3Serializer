@@ -27,9 +27,7 @@ package org.as3.serializer
 
 	/**
 	 * 
-	 * @author Mario Vieira
-	 * 
-	 * Static class to serialize objects into XML and Serializer XML into Objects
+	 * Static class to serialize objects into XML and deseerialize XML into Objects
 	 * 
 	 * @example
 	 * The following serializes objects to XML and deserializes XML to objects:
@@ -38,23 +36,17 @@ package org.as3.serializer
 	 *  var object:PlaylistVoCollection = ValueObjectCollectionExample.valueObjectCollection; 
 	 *  
 	 *  //Returns the XML
-	 *  var objectSerializedToXML:XML = Serializer.serializeValuObjectIntoXML(object);
+	 *  var objectSerializedToXML:XML = Serializer.serializeValuObjectIntoXML( object );
 	 * 
 	 *  //Returns the typed object
 	 *  var serializedObject:PlaylistVoCollection = Serializer.deserializeXMLIntoValuObject( objectSerializedToXML );
 	 *  </listing> 
+	 * 
+	 * @author Mario Vieira
  	 * 
 	 */	
 	public class Serializer
 	{
-		/**
-		 *
-		 * @private 
-		 * 
-		 * 
-		 */	
-		public function Serializer(){}
-		
 		/**
 		 * 
 		 * @param object The object to be serialized into XML

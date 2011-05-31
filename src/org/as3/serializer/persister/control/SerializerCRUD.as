@@ -17,13 +17,12 @@ package org.as3.serializer.persister.control
 	import org.as3.utils.services.FileUpdater;
 	
 	/**
-	 * The event dispatched for the asyncronous <code>retrieve</code> call
+	 * The event call back for loaded and retrieved object
 	 */	
 	[Event(name="onRetrieved", type="org.as3.serializer.persister.events.PersisterEvent")]
 	
 	/**
 	 * 
-	 * @author Mario Vieira
 	 * 
 	 * Provides CRUD operations for the value object serializer
 	 * @example 
@@ -46,6 +45,9 @@ package org.as3.serializer.persister.control
 	 * }
 	 * 
 	 * </listing>   
+	 * 
+	 * 
+	 * @author Mario Vieira
 	 * 
 	 */	
 	public class SerializerCRUD extends EventDispatcher implements ICRUD
