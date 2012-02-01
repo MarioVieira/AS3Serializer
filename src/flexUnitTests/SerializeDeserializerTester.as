@@ -25,5 +25,5 @@ package flexUnitTests
 			var xml:XML =  Serializer.serialize( ValueObjectCollectionExample.valueObjectCollection );
 			Assert.assertNotNull( Serializer.deserialize( xml) );
 		}
-	}
+	}  
 }

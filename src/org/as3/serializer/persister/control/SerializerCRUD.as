@@ -8,12 +8,12 @@ package org.as3.serializer.persister.control
 	import flash.net.URLRequest;
 	import flash.utils.setTimeout;
 	
+	import org.as3.serializer.Serializer;
 	import org.as3.serializer.example.PlaylistVoCollection;
-	import org.as3.serializer.utils.ObjectDescriptor;
 	import org.as3.serializer.interfaces.ICRUD;
 	import org.as3.serializer.persister.enums.PersisterEnums;
 	import org.as3.serializer.persister.events.PersisterEvent;
-	import org.as3.serializer.Serializer;
+	import org.as3.serializer.utils.ObjectDescriptor;
 	import org.as3.utils.services.FileUpdater;
 	
 	/**
@@ -98,15 +98,27 @@ package org.as3.serializer.persister.control
 		 * @param cache Whether to dispatch the onRetrieved event (not wished if using Signals)
 		 * 
 		 */		
-		public function SerializerCRUD(apacheFolder:String, cache:Boolean, dispatchRetrievedEvent:Boolean)
+		public function SerializerCRUD(xmlLocation:String, cache:Boolean, dispatchRetrievedEvent:Boolean)
 		{
 			retriever 				= new URLLoader();
-			_apacheFolder			= hasForwadSlash(apacheFolder);
-			_updater 	  			= new FileUpdater(apacheFolder + PersisterEnums.PHP_UPDATER);
+			_apacheFolder			= hasForwadSlash(xmlLocation);
+			_updater 	  			= new FileUpdater(xmlLocation + PersisterEnums.PHP_UPDATER);
 			_dispatchRetrievedEvent = dispatchRetrievedEvent;
 			_cache					= cache;
 		}
 		 
+		/**
+		 * Updates/Creates the entry
+		 *  
+		 * @param object Object to be serialized and persisted
+		 * @param id
+		 * 
+		 */		
+		public function set xmlLocation(value:String):void
+		{
+			_apacheFolder = value;
+		}
+		
 		/**
 		 * Updates/Creates the entry
 		 *  
@@ -137,17 +149,17 @@ package org.as3.serializer.persister.control
 		 *  
 		 * @param objectClass The Class of the object to be retrieved
 		 * @param uniqueId The entry unique identifier
-		 * 
+		 * @param optional parameter to define the file to be laoded and serialized
 		 */		
-		public function retrieve(objectClass:Class, uniqueId:uint):void
+		public function retrieve(objectClass:Class, uniqueId:uint, fileName:String = null):void
 		{
 			if(_dispatchRetrievedEvent) 
 			{
 				retriever.addEventListener(Event.COMPLETE, onRetrieve);
 				retriever.addEventListener(IOErrorEvent.IO_ERROR, onLoadError);
 			}
-																														//unique time as query string to avoid browser caching
-			var request:URLRequest = new URLRequest( _apacheFolder + getItemFileName(objectClass, uniqueId) + (!_cache ? '?' + new Date().getTime() : '') );
+			
+			var request:URLRequest = new URLRequest( _apacheFolder + getItemFileName(objectClass, uniqueId, fileName) + (!_cache ? '?' + new Date().getTime() : '') );
 			retriever.dataFormat = URLLoaderDataFormat.TEXT;
 			retriever.load(request);
 		}
@@ -167,9 +179,10 @@ package org.as3.serializer.persister.control
 		 * @private
 		 * 
 		 */	
-		protected function getItemFileName(objectOrClass:*, uniqueId:uint):String
+		protected function getItemFileName(objectOrClass:*, uniqueId:uint, fileName:String = null):String
 		{
-			return ObjectDescriptor.getClassName(objectOrClass) + PersisterEnums.UNDERSCORE + uniqueId.toString() + PersisterEnums.XML_EXTENSION;
+			var tmpFileName:String = (fileName) ? fileName : ObjectDescriptor.getClassName(objectOrClass);
+			return  tmpFileName + PersisterEnums.UNDERSCORE + uniqueId.toString() + PersisterEnums.XML_EXTENSION;
 		}
 		
 		/**

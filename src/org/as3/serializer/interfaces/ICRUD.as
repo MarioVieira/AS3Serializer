@@ -13,6 +13,6 @@ package org.as3.serializer.interfaces
 	{
 		function update(object:Object, uniqueId:uint):void;
 		function destroy(objectClass:Class, uniqueId:uint):void;
-		function retrieve(objectClass:Class, uniqueId:uint):void;
+		function retrieve(objectClass:Class, uniqueId:uint, fileName:String = null):void;
 	}
 }
